@@ -1,4 +1,4 @@
-import { useFormik } from 'formik';
+import { Formik } from 'formik';
 
 const initialState = {
   nombre: '',
@@ -31,41 +31,45 @@ const validate = values => {
 };
 
 function App() {
-  const formik = useFormik({
-    initialValues: initialState,
-    onSubmit: values => console.log('values: ', values),
-    validate
-  });
-
   return (
-    <form onSubmit={formik.handleSubmit}>
-      <label>Nombre</label>
-      <input
-        type="text"
-        {...formik.getFieldProps('nombre')}
-      />
-      {(formik.touched.nombre && formik.errors.nombre) && <div>{formik.errors.nombre}</div>}
+    <Formik
+      initialValues={initialState}
+      validate={validate}
+      onSubmit={values => console.log('values: ', values)}
+    >
+      {formik =>
+      (
+        <form onSubmit={formik.handleSubmit}>
+          <label>Nombre</label>
+          <input
+            type="text"
+            {...formik.getFieldProps('nombre')}
+          />
+          {(formik.touched.nombre && formik.errors.nombre) && <div>{formik.errors.nombre}</div>}
 
-      <br />
+          <br />
 
-      <label>Apellido</label>
-      <input
-        type="text"
-        {...formik.getFieldProps('apellido')}
-      />
-      {(formik.touched.apellido && formik.errors.apellido) && <div>{formik.errors.apellido}</div>}
+          <label>Apellido</label>
+          <input
+            type="text"
+            {...formik.getFieldProps('apellido')}
+          />
+          {(formik.touched.apellido && formik.errors.apellido) && <div>{formik.errors.apellido}</div>}
 
-      <br />
+          <br />
 
-      <label>Correo</label>
-      <input
-        type="email"
-        {...formik.getFieldProps('email')}
-      />
-      {(formik.touched.email && formik.errors.email) && <div>{formik.errors.email}</div>}
+          <label>Correo</label>
+          <input
+            type="email"
+            {...formik.getFieldProps('email')}
+          />
+          {(formik.touched.email && formik.errors.email) && <div>{formik.errors.email}</div>}
 
-      <button type="submit">Enviar</button>
-    </form>
+          <button type="submit">Enviar</button>
+        </form>
+      )
+      }
+    </Formik>
   );
 }
 
