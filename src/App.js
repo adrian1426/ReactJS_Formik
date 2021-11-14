@@ -41,11 +41,8 @@ function App() {
     <form onSubmit={formik.handleSubmit}>
       <label>Nombre</label>
       <input
-        name='nombre'
         type="text"
-        onChange={formik.handleChange}
-        onBlur={formik.handleBlur}
-        value={formik.values.nombre}
+        {...formik.getFieldProps('nombre')}
       />
       {(formik.touched.nombre && formik.errors.nombre) && <div>{formik.errors.nombre}</div>}
 
@@ -53,11 +50,8 @@ function App() {
 
       <label>Apellido</label>
       <input
-        name='apellido'
         type="text"
-        onChange={formik.handleChange}
-        onBlur={formik.handleBlur}
-        value={formik.values.apellido}
+        {...formik.getFieldProps('apellido')}
       />
       {(formik.touched.apellido && formik.errors.apellido) && <div>{formik.errors.apellido}</div>}
 
@@ -65,11 +59,8 @@ function App() {
 
       <label>Correo</label>
       <input
-        name='email'
         type="email"
-        onChange={formik.handleChange}
-        onBlur={formik.handleBlur}
-        value={formik.values.email}
+        {...formik.getFieldProps('email')}
       />
       {(formik.touched.email && formik.errors.email) && <div>{formik.errors.email}</div>}
 
