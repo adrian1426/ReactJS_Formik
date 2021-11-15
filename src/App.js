@@ -1,5 +1,6 @@
-import { Formik, Form } from 'formik';
+import { Formik, Form, ErrorMessage } from 'formik';
 import Checkbox from './components/Checkbox';
+import Radio from './components/Radio';
 import Select from './components/Select';
 import TextInput from './components/TextInput';
 
@@ -8,7 +9,8 @@ const initialState = {
   apellido: '',
   email: '',
   accept: false,
-  lenguaje: ''
+  lenguaje: '',
+  sexo: ''
 };
 
 const validate = values => {
@@ -30,6 +32,19 @@ const validate = values => {
     errors.email = 'requerido';
   } else if (values.email.length < 5) {
     errors.email = 'el email es muy corto';
+  }
+
+  /////////77
+  if (!values.accept) {
+    errors.accept = 'requerido';
+  }
+
+  if (!values.lenguaje) {
+    errors.lenguaje = 'requerido';
+  }
+
+  if (!values.sexo) {
+    errors.sexo = 'requerido';
   }
 
   return errors;
@@ -73,6 +88,11 @@ function App() {
         <Checkbox name='accept'>
           Aceptar términos y condiciones
         </Checkbox>
+
+        <Radio label='Hombre' name='sexo' value='h' />
+        <Radio label='Mujer' name='sexo' value='m' />
+
+        <ErrorMessage name='sexo' />
 
         <button type="submit">Enviar</button>
       </Form>
