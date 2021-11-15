@@ -1,15 +1,15 @@
 import { useField } from 'formik';
 
-const TextInput = ({ label, ...restProps }) => {
-  const [field, meta] = useField(restProps);
+const Select = ({ label, ...props }) => {
+  const [field, meta] = useField(props);
 
   return (
     <div>
       <label>{label}</label>
-      <input {...field} {...restProps} />
+      <select {...field} {...props} />
       {(meta.touched && meta.error) && <div>{meta.error}</div>}
     </div>
   );
 };
 
-export default TextInput;
+export default Select;

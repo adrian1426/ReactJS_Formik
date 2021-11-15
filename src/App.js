@@ -1,12 +1,14 @@
-import { Formik, Form, Field, ErrorMessage } from 'formik';
+import { Formik, Form } from 'formik';
 import Checkbox from './components/Checkbox';
+import Select from './components/Select';
 import TextInput from './components/TextInput';
 
 const initialState = {
   nombre: '',
   apellido: '',
   email: '',
-  accept: false
+  accept: false,
+  lenguaje: ''
 };
 
 const validate = values => {
@@ -48,21 +50,25 @@ function App() {
 
         <br />
 
-        <label>Apellido</label>
-        <Field
-          type="text"
+        <TextInput
           name='apellido'
+          label='Apellido'
         />
-        <ErrorMessage name='apellido' />
 
         <br />
 
-        <label>Correo</label>
-        <Field
-          type="email"
+        <TextInput
           name='email'
+          type='email'
+          label='Correo'
         />
-        <ErrorMessage name='email' />
+
+        <Select name='lenguaje' label='tipo de lenguaje'>
+          <option value=''>Seleccione el lenguaje</option>
+          <option value='vue'>VUE</option>
+          <option value='react'>React</option>
+          <option value='angular'>Angular</option>
+        </Select>
 
         <Checkbox name='accept'>
           Aceptar términos y condiciones
