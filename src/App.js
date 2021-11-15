@@ -1,4 +1,5 @@
 import { Formik, Form, Field, ErrorMessage } from 'formik';
+import TextInput from './components/TextInput';
 
 const initialState = {
   nombre: '',
@@ -38,12 +39,10 @@ function App() {
       onSubmit={values => console.log('values: ', values)}
     >
       <Form>
-        <label>Nombre</label>
-        <Field
-          type="text"
+        <TextInput
           name='nombre'
+          label='Nombre'
         />
-        <ErrorMessage name='nombre' />
 
         <br />
 
